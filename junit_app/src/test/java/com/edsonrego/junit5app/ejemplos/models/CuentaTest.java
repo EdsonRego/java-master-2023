@@ -28,9 +28,9 @@ class CuentaTest {
     }
 
     @Test
-    void testeReferenciaCuenta() {
+    void testReferenciaCuenta() {
         Cuenta cuenta = new Cuenta("John Deere", new BigDecimal("8900.9997"));
-        Cuenta cuenta2 = new Cuenta("John Deere", new BigDecimal("8900.999"));
+        Cuenta cuenta2 = new Cuenta("John Deere", new BigDecimal("8900.9997"));
 
 //        assertNotEquals(cuenta2,cuenta);
         assertEquals(cuenta2,cuenta);
