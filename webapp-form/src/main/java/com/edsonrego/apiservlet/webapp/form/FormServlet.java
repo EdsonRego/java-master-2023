@@ -8,9 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @WebServlet("/registro")
 public class FormServlet extends HttpServlet {
@@ -30,31 +28,31 @@ public class FormServlet extends HttpServlet {
                 req.getParameter("habilitar").equals("on");
         String secreto = req.getParameter("secreto");
 
-        List<String> errores = new ArrayList<>();
+        Map<String, String> errores = new HashMap<>();
 
         if (username == null || username.isBlank()) {
-            errores.add("el user name es requerido");
+            errores.put("username","el user name es requerido");
         }
 
         if (password == null || password.isBlank()) {
-            errores.add("el password no puede ser vacio");
+            errores.put("password","el password no puede ser vacio");
         }
 
         if (email == null || !email.contains("@")) {
-            errores.add("el email es requerido y debe tener un formato de correo");
+            errores.put("email","el email es requerido y debe tener un formato de correo");
         }
         if (pais == null || pais.equals("") || pais.equals(" ")) {
-            errores.add("el pais es requerido");
+            errores.put("pais","el pais es requerido");
         }
 
         if (lenguajes == null || lenguajes.length == 0) {
-            errores.add("debe seleccionar al menos un tema");
+            errores.put("lenguajes","debe seleccionar al menos un tema");
         }
         if (roles == null || roles.length == 0) {
-            errores.add("debe seleccionar al menos un role");
+            errores.put("roles","debe seleccionar al menos un role");
         }
         if (idioma == null) {
-            errores.add("debes seleccionar un idioma");
+            errores.put("idioma","debes seleccionar un idioma");
         }
         if (errores.isEmpty()) {
             try (PrintWriter out = resp.getWriter()) {
